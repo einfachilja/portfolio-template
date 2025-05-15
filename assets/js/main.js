@@ -55,3 +55,23 @@ sr.reveal('.home__data, .about__img, .skills__subtitle, .skills__text',{});
 sr.reveal('.home__img, .about__subtitle, .about__text, .skills__img',{delay: 400}); 
 sr.reveal('.home__social-icon',{ interval: 200}); 
 sr.reveal('.skills__data, .work__img, .contact__input',{interval: 200}); 
+
+/*===== SENDING E-MAIL WITH FORMSPREE =====*/
+function sendMail(event) {
+  event.preventDefault();
+  const data = new FormData(event.target);
+
+  fetch("https://formspree.io/f/mvgkwkdv", {
+    method: "POST",
+    body: new FormData(event.target),
+    headers: {
+      Accept: "application/json",
+    },
+  })
+    .then(() => {
+      window.location.href = "./index.html";
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
